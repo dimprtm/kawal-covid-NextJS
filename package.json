@@ -1,0 +1,29 @@
+{
+  "name": "kawal-covid",
+  "version": "1.0.0",
+  "description": "kawalcorona clone ;D",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimprtm/kawal-covid-NextJS.git"
+  },
+  "keywords": [
+    "nextjs"
+  ],
+  "author": "dimas pratama iskandar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimprtm/kawal-covid-NextJS/issues"
+  },
+  "homepage": "https://github.com/dimprtm/kawal-covid-NextJS#readme",
+  "dependencies": {
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
