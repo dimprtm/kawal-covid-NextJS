@@ -1,8 +1,9 @@
 import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
 import CardStatus from './CardStatus'
+import Grafik from './Grafik'
 
-export default function IndexPage() {
+export default function IndexPage(props) {
     const contenStyle = {
         minHeight: "90vh",
         top: "56px",
@@ -23,6 +24,7 @@ export default function IndexPage() {
                     </div>
                 </div>
                 <CardStatus />
+                <Grafik isGlobal={props.isGlobal} />
             </div>
             <Footer rightContent={""}
                 leftContent={<div className="ms-2 font-weight-bold">Niomic-Tech @2021 All Right Reserved</div>}
