@@ -2,6 +2,7 @@ import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
 import CardStatus from './CardStatus'
 import Grafik from './Grafik'
+import Table from './Table'
 
 export default function IndexPage(props) {
     const contenStyle = {
@@ -25,6 +26,7 @@ export default function IndexPage(props) {
                 </div>
                 <CardStatus />
                 <Grafik isGlobal={props.isGlobal} />
+                <Table isGlobal={props.isGlobal} />
             </div>
             <Footer rightContent={""}
                 leftContent={<div className="ms-2 font-weight-bold">Niomic-Tech @2021 All Right Reserved</div>}
