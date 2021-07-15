@@ -1,5 +1,6 @@
 import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
+import CardStatus from './CardStatus'
 
 export default function IndexPage() {
     const contenStyle = {
@@ -21,9 +22,10 @@ export default function IndexPage() {
                         <p className="mt-3 f18">Pantau Kasus Covid Terkini</p>
                     </div>
                 </div>
+                <CardStatus />
             </div>
             <Footer rightContent={""}
-                leftContent={<div className="ml-2 font-weight-bold">Niomic-Tech @2021 All Right Reserved</div>}
+                leftContent={<div className="ms-2 font-weight-bold">Niomic-Tech @2021 All Right Reserved</div>}
             />
         </div>
     )
