@@ -11,7 +11,7 @@ export default function Header(props) {
                 className="main-header navbar navbar-expand navbar-light navbar-white fixed-top border-bottom"
                 style={{ backgroundColor: "white" }}
             >
-                <ul className="navbar-nav">
+                <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
                         <a className="nav-link" data-widget="pushmenu" href="#">
                             <img src="images/niomic-logo.png" style={{ width: "100px" }} />
