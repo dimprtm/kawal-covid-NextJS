@@ -7,18 +7,21 @@ export default class Indonesia extends Component {
     static async getInitialProps() {
         const data = await fetch(`${config["kawal-corona"].base_url}/indonesia`);
         const items = await data.json();
+        const province = await fetch(`${config["kawal-corona"].base_url}/indonesia/provinsi`);
+        const itemProvince = await province.json();
         const stat = await fetch(`${config["global-api"].base_url}${config["global-api"].total_live}/indonesia`);
         const statData = await stat.json();
         return {
             items,
-            statData
+            statData,
+            itemProvince
         }
     }
 
     render() {
-        const { items, statData } = this.props;
+        const { items, statData, itemProvince } = this.props;
         return (
-            <IndexPage isGlobal={false} data={items} statistik={statData} />
+            <IndexPage isGlobal={false} data={items} statistik={statData} provinsi={itemProvince} />
         )
     }
 }

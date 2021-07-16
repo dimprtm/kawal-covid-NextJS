@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from 'react-number-format'
 
 export default function Table(props) {
     return (
@@ -19,50 +20,91 @@ export default function Table(props) {
                                             <th>Positif</th>
                                             <th>Sembuh</th>
                                             <th>Meninggal</th>
+                                            {props.isGlobal ? <th>Aktif</th> : ""}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {props.isGlobal ?
-                                            <>
-                                                <tr>
-                                                    <td>1.</td>
-                                                    <td>US</td>
-                                                    <td>10348348</td>
-                                                    <td>839489</td>
-                                                    <td>34909043</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2.</td>
-                                                    <td>India</td>
-                                                    <td>13434448348</td>
-                                                    <td>8393434489</td>
-                                                    <td>349077689043</td>
-                                                </tr>
-                                            </>
+                                            props.data && props.data.map((item, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td>{index + 1}</td>
+                                                        <td>{item.attributes.Country_Region}</td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Confirmed}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Recovered}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Deaths}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Active}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
                                             :
-                                            <>
-                                                <tr>
-                                                    <td>1.</td>
-                                                    <td>Jawa Barat</td>
-                                                    <td>848</td>
-                                                    <td>89</td>
-                                                    <td>2043</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2.</td>
-                                                    <td>Jawa Tengah</td>
-                                                    <td>238</td>
-                                                    <td>89</td>
-                                                    <td>1043</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3.</td>
-                                                    <td>Jawa Timur</td>
-                                                    <td>564</td>
-                                                    <td>877</td>
-                                                    <td>2213</td>
-                                                </tr>
-                                            </>
+                                            props.provinsi && props.provinsi.map((item, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td>{index + 1}</td>
+                                                        <td>{item.attributes.Provinsi}</td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Kasus_Posi}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Kasus_Semb}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <NumberFormat
+                                                                value={item.attributes.Kasus_Meni}
+                                                                displayType={"text"}
+                                                                thousandSeparator={","}
+                                                                decimalSeparator={"."}
+                                                                defaultValue={0}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
                                         }
                                     </tbody>
                                 </table>
@@ -71,6 +113,6 @@ export default function Table(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
