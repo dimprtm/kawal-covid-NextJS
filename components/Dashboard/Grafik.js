@@ -1,35 +1,97 @@
-import React from 'react'
-import { Line, Pie } from 'react-chartjs-2'
+import React from 'react';
+import { Line, Pie } from 'react-chartjs-2';
+import NumberFormat from 'react-number-format';
+const { sum, getAllMonth } = require('../../util/library');
 
 export default function Grafik(props) {
     let dataCovid = null;
     let data = null;
 
     if (!props.isGlobal) {
-        dataCovid = [12, 4, 35, 10, 6, 7, 22, 7, 67, 5, 54];
+        dataCovid = getAllMonth(props);
         data = {
-            labels: ["2 Mar", "3 Mar", "4 Mar", "5 Mar", "6 Mar", "7 Mar", "8 Mar", "9 Mar", "10 Mar", "11 Mar", "12 Mar"],
+            labels: dataCovid.label,
             datasets: [
                 {
                     label: "Jumlah Positif",
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: "rgba(229, 56, 50, 0.4)",
-                    borderColor: "rgba(229,56, 50,1)",
+                    backgroundColor: "rgb(220,53,69, 0.5)",
+                    borderColor: "rgb(220,53,69)",
                     borderCapStyle: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: "miter",
-                    pointBorderColor: "rgba(229,56,50,1)",
+                    pointBorderColor: "rgb(220,53,69)",
                     pointBackgrounColor: "#fff",
                     pointBorderWidth: 1,
                     pointHoverRadius: 10,
-                    pointHoverBackgroundColor: "rgba(229,56,50,1)",
-                    pointHoverBorderColor: "rgb(220,220,220,1)",
+                    pointHoverBackgroundColor: "rgb(220,53,69)",
+                    pointHoverBorderColor: "#000",
                     pointBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: dataCovid
-                }
+                    data: dataCovid.positif
+                },
+                {
+                    label: "Jumlah Sembuh",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgb(25,135,84, 0.5)",
+                    borderColor: "rgb(25,135,84)",
+                    borderCapStyle: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: "miter",
+                    pointBorderColor: "rgb(25,135,84)",
+                    pointBackgrounColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 10,
+                    pointHoverBackgroundColor: "rgb(25,135,84)",
+                    pointHoverBorderColor: "#000",
+                    pointBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: dataCovid.sembuh
+                },
+                {
+                    label: "Jumlah Meninggal",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgb(108,117,125, 0.5)",
+                    borderColor: "rgb(108,117,125)",
+                    borderCapStyle: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: "miter",
+                    pointBorderColor: "rgb(108,117,125)",
+                    pointBackgrounColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 10,
+                    pointHoverBackgroundColor: "rgb(108,117,125)",
+                    pointHoverBorderColor: "#000",
+                    pointBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: dataCovid.meninggal
+                },
+                {
+                    label: "Jumlah Aktif",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgb(13,202,240, 0.5)",
+                    borderColor: "rgb(13,202,240)",
+                    borderCapStyle: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: "miter",
+                    pointBorderColor: "rgb(13,202,240)",
+                    pointBackgrounColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 10,
+                    pointHoverBackgroundColor: "rgb(13,202,240)",
+                    pointHoverBorderColor: "#000",
+                    pointBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: dataCovid.active
+                },
             ]
         }
     }
@@ -41,16 +103,16 @@ export default function Grafik(props) {
         ],
         datasets: [
             {
-                data: [2000, 1854, 1234],
+                data: [sum('Confirmed', props), sum('Recovered', props), sum('Deaths', props)],
                 backgroundColor: [
-                    "#ff6384",
-                    "#36a2eb",
-                    "#ffce56"
+                    "#DC3545",
+                    "#198754",
+                    "#6C757D"
                 ],
                 hoverBackgroundColor: [
-                    "#ff6384",
-                    "#36a2eb",
-                    "#ffce56"
+                    "#DC3545",
+                    "#198754",
+                    "#6C757D"
                 ]
             }
         ]
@@ -70,17 +132,41 @@ export default function Grafik(props) {
                         <div className="row mt-6">
                             <div className="col text-center">
                                 <h5 className="font-weight-normal mt-2">POSITIF</h5>
-                                <h3 className="mb-1">20000</h3>
+                                <h3 className="mb-1">
+                                    <NumberFormat
+                                        value={sum('Confirmed', props)}
+                                        displayType={'text'}
+                                        thousandSeparator={","}
+                                        decimalSeparator={"."}
+                                        defaulValue={0}
+                                    />
+                                </h3>
                                 <p className="mb-0 text-muted"><span className="text-lg font-weight-700"></span>ORANG</p>
                             </div>
                             <div className="col text-center">
                                 <h5 className="font-weight-normal mt-2">SEMBUH</h5>
-                                <h3 className="mb-1">12000</h3>
+                                <h3 className="mb-1">
+                                    <NumberFormat
+                                        value={sum('Recovered', props)}
+                                        displayType={'text'}
+                                        thousandSeparator={","}
+                                        decimalSeparator={"."}
+                                        defaulValue={0}
+                                    />
+                                </h3>
                                 <p className="mb-0 text-muted"><span className="text-lg font-weight-700"></span>ORANG</p>
                             </div>
                             <div className="col text-center">
                                 <h5 className="font-weight-normal mt-2">MENINGGAL</h5>
-                                <h3 className="mb-1">1000</h3>
+                                <h3 className="mb-1">
+                                    <NumberFormat
+                                        value={sum('Deaths', props)}
+                                        displayType={'text'}
+                                        thousandSeparator={","}
+                                        decimalSeparator={"."}
+                                        defaulValue={0}
+                                    />
+                                </h3>
                                 <p className="mb-0 text-muted"><span className="text-lg font-weight-700"></span>ORANG</p>
                             </div>
                         </div>

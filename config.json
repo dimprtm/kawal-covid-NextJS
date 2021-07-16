@@ -9,6 +9,6 @@
     },
     "global-api": {
         "base_url": "https://api.covid19api.com",
-        "total-live": "/total/dayone/country"
+        "total_live": "/total/dayone/country"
     }
 }
